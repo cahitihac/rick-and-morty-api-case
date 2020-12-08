@@ -4,6 +4,18 @@ import { Row, Col, Card } from 'antd';
 
 const { Meta } = Card;
 
+const styles = {
+  characterCard: {
+    width: 'auto',
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: 10
+  },
+  link: {
+    width: 300
+  }
+};
+
 function Home() {
   const { characters } = useSelector(state => state.character);
 
@@ -12,14 +24,16 @@ function Home() {
       {
         characters.map(character => {
           return(
-            <Col xs={24} sm={16} md={12} lg={8} xl={6} style={{ width: 'auto', display: 'flex', justifyContent: 'center', marginBottom: 10 }} key={ character.id }>
-              <Link to={`/character/${character.id}`}>
+            <Col xs={ 24 } md={ 12 } lg={ 8 } xxl={ 6 }
+              style={ styles.characterCard }
+              key={ character.id }
+            >
+              <Link to={ `/character/${character.id}` } style={ styles.link }>
                 <Card
                   hoverable
-                  style={{ width: 250 }}
-                  cover={<img alt="example" src={ character.image } />}
-                  >
-                    <Meta title={ character.name } />
+                  cover={ <img alt="example" src={ character.image } /> }
+                >
+                  <Meta title={ character.name } />
                 </Card>
               </Link>
             </Col>

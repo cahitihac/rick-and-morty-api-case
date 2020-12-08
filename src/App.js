@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
 import { Layout } from 'antd';
 
 import Home from './components/home';
@@ -25,7 +25,10 @@ function App() {
     dispatch(fetchCharacters(CHARACTER_API_URL));
 
     window.addEventListener('scroll', () => {
-      if ((window.innerHeight + window.scrollY) >= document.getElementById('root').offsetHeight) {        
+      // prevent fetching new characters if not on homepage
+      if (window.location.pathname === '/' && 
+        ((window.innerHeight + window.scrollY) >= document.getElementById('root').offsetHeight)) {
+       
         dispatch(fetchCharacters());
       }
     });
