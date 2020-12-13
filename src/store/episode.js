@@ -20,9 +20,9 @@ const episodeSlice = createSlice({
   }
 });
 
-const { actions, reducers } = episodeSlice;
+const { actions, reducer } = episodeSlice;
 export const { getEpisodesSuccess, clearEpisodes } = actions;
-export default reducers;
+export default reducer;
 
 export const fetchEpisodes = episodeList => {
   return async dispatch => {

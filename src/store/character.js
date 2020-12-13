@@ -29,13 +29,13 @@ const characterSlice = createSlice({
   }
 });
 
-const { actions, reducers } = characterSlice;
+const { actions, reducer } = characterSlice;
 export const {
   getCharactersSuccess,
   getSelectedCharacterSuccess,
   clearSelectedCharacter
 } = actions;
-export default reducers;
+export default reducer;
 
 export const fetchCharacters = url => {
   return async (dispatch, getState) => {
