@@ -11,14 +11,16 @@ const characterSlice = createSlice({
   },
   reducers: {
     getCharactersSuccess(state, action) {
-      const characters = action.payload;
-      state.info = characters.info;
-      characters.results.forEach(character => {
+      const { info, results } = action.payload;
+
+      state.info = info;
+      results.forEach(character => {
         state.characters.push(character);
       });
     },
     getSelectedCharacterSuccess(state, action) {
       const character = action.payload;
+
       state.selectedCharacter = character;
     },
     clearSelectedCharacter(state) {
@@ -27,13 +29,13 @@ const characterSlice = createSlice({
   }
 });
 
-const { actions, reducer } = characterSlice;
+const { actions, reducers } = characterSlice;
 export const {
   getCharactersSuccess,
   getSelectedCharacterSuccess,
   clearSelectedCharacter
 } = actions;
-export default reducer;
+export default reducers;
 
 export const fetchCharacters = url => {
   return async (dispatch, getState) => {
@@ -53,6 +55,7 @@ export const fetchCharacters = url => {
     try {
       const response = await fetch(url);
       const characters = await response.json();
+
       dispatch(getCharactersSuccess(characters));
     } catch (error) {
       // here an action can be dispatched to let the user know what's happened
